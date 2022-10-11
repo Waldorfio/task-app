@@ -1,4 +1,6 @@
 import { Component } from 'react'
+import Overview from './components/Overview'
+import ReactDOM from 'react-dom/client';
 
 class App extends Component {
   constructor(props) {
@@ -6,8 +8,10 @@ class App extends Component {
 
     this.state = {
       value: '',
+      tasks: [],
     };
 
+    // Binding external functions to this component
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -19,15 +23,31 @@ class App extends Component {
   }
 
   handleSubmit(event) { // Running the function when user hits submit
-    alert(''+this.state.value+' Was submitted'); // Will log current states value
+    const {value, tasks } = this.state;
+
+    // Appending to array
+    this.setState({
+      tasks: tasks.concat(value),
+    })
+
+    alert(''+value+' Was submitted'); // Will log current states value
+    alert(''+tasks+' Was submitted'); // Will log current states value
+
+    const element = <Overview name="Jimothy" />;
+    return (
+      element
+    )
+    
     event.preventDefault(); // Prevents the form from submitting and refreshing the page
   }
 
   render() {
+    const {value, tasks } = this.state;
+    
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <input placeholder='enter here' value={this.state.value} onChange={this.handleChange}></input>
+        <form id="theForm" onSubmit={this.handleSubmit}>
+          <input placeholder='enter here' value={value} onChange={this.handleChange}></input>
           <input type="submit" value="SUBMIT"></input>
         </form>
       </div>
