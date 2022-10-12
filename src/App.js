@@ -30,14 +30,6 @@ class App extends Component {
       tasks: tasks.concat(value),
     })
 
-    alert(''+value+' Was submitted'); // Will log current states value
-    alert(''+tasks+' Was submitted'); // Will log current states value
-
-    const element = <Overview name="Jimothy" />;
-    return (
-      element
-    )
-    
     event.preventDefault(); // Prevents the form from submitting and refreshing the page
   }
 
@@ -50,6 +42,7 @@ class App extends Component {
           <input placeholder='enter here' value={value} onChange={this.handleChange}></input>
           <input type="submit" value="SUBMIT"></input>
         </form>
+        <Overview name={this.state.value} />
       </div>
     )
   }
