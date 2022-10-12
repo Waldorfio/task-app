@@ -28,6 +28,7 @@ class App extends Component {
     // Appending to array
     this.setState({
       tasks: tasks.concat(value),
+      value: '',
     })
 
     event.preventDefault(); // Prevents the form from submitting and refreshing the page
@@ -42,7 +43,7 @@ class App extends Component {
           <input placeholder='enter here' value={value} onChange={this.handleChange}></input>
           <input type="submit" value="SUBMIT"></input>
         </form>
-        <Overview name={this.state.value} />
+        <Overview name={tasks} />
       </div>
     )
   }
