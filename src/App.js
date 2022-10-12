@@ -8,9 +8,11 @@ class App extends Component {
     super(props);
 
     this.state = {
-      value: '',
+      value: {
+        text: '',
+        id: uniqid(),
+      },
       tasks: [],
-      id: uniqid(),
     };
 
     // Binding external functions to this component
@@ -25,13 +27,15 @@ class App extends Component {
   }
 
   handleSubmit(event) { // Running the function when user hits submit
-    const { value, tasks, id } = this.state;
+    const { value, tasks } = this.state;
 
     // Appending to array
     this.setState({
       tasks: tasks.concat(value),
-      value: '',
-      id: uniqid(),
+      value: {
+        text: '',
+        id: uniqid(),
+      },
     })
     // alert('id: '+id);
 
@@ -44,7 +48,7 @@ class App extends Component {
     return (
       <div>
         <form id="theForm" onSubmit={this.handleSubmit}>
-          <input placeholder='enter here' value={value} onChange={this.handleChange}></input>
+          <input placeholder='enter here' value={value.text} onChange={this.handleChange}></input>
           <input type="submit" value="SUBMIT"></input>
         </form>
         <Overview name={this.state} />
