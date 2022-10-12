@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import Overview from './components/Overview'
 import ReactDOM from 'react-dom/client';
+import uniqid from 'uniqid'
 
 class App extends Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class App extends Component {
     this.state = {
       value: '',
       tasks: [],
-      id: 0,
+      id: uniqid(),
     };
 
     // Binding external functions to this component
@@ -30,7 +31,7 @@ class App extends Component {
     this.setState({
       tasks: tasks.concat(value),
       value: '',
-      id: id + 1,
+      id: uniqid(),
     })
     // alert('id: '+id);
 
@@ -46,7 +47,7 @@ class App extends Component {
           <input placeholder='enter here' value={value} onChange={this.handleChange}></input>
           <input type="submit" value="SUBMIT"></input>
         </form>
-        <Overview name={tasks} />
+        <Overview name={this.state} />
       </div>
     )
   }
