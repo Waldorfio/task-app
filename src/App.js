@@ -9,6 +9,7 @@ class App extends Component {
     this.state = {
       value: '',
       tasks: [],
+      id: 0,
     };
 
     // Binding external functions to this component
@@ -23,19 +24,21 @@ class App extends Component {
   }
 
   handleSubmit(event) { // Running the function when user hits submit
-    const {value, tasks } = this.state;
+    const { value, tasks, id } = this.state;
 
     // Appending to array
     this.setState({
       tasks: tasks.concat(value),
       value: '',
+      id: id + 1,
     })
+    // alert('id: '+id);
 
     event.preventDefault(); // Prevents the form from submitting and refreshing the page
   }
 
   render() {
-    const {value, tasks } = this.state;
+    const { value, tasks } = this.state;
     
     return (
       <div>
